@@ -1,5 +1,5 @@
 import pool from '../db';
-import { GET_COMPANIES } from '../Queries';
+import { GET_COMPANIES } from '../queries';
 
 interface Company {
     id: number;

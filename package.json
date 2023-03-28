@@ -4,7 +4,8 @@
   "description": "The database schema should include tables for companies, cards, transactions, and support requests. Here's a possible schema:",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.ts"
   },
   "author": "",
   "license": "ISC",
