@@ -1,0 +1,80 @@
+openapi: 3.0.0
+info:
+  title: My API
+  description: My API description
+  version: 1.0.0
+servers:
+  - url: http://localhost:3002/api
+paths:
+  /company:
+    get:
+      summary: Get a list of companies
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                            - company
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+    post:
+      summary: Create a new company
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        "201":
+          description: Created
+  /company/{companyId}:
+    get:
+      summary: Get a company by ID
+      parameters:
+        - name: companyId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      type:
+                        type: string
+                        enum:
+                          - company
+                      attributes:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+        "404":
+          description: Not Found
