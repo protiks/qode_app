@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/api', api)
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 console.log('Starting server...')
 app.listen(port, () => {
