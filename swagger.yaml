@@ -78,3 +78,67 @@ paths:
                             type: string
         "404":
           description: Not Found
+  /card/{cardID}:
+    get:
+      summary: Get a card by ID
+      parameters:
+        - name: cardID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      attributes:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+        "404":
+          description: Not Found
+  /transactions/{cardID}:
+    get:
+      summary: Get transactions for a card by ID
+      parameters:
+        - name: cardID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        attributes:
+                          type: object
+                          properties:
+                            description:
+                              type: string
+                            amount:
+                              type: number
+                            date:
+                              type: string
+        "404":
+          description: Not Found
