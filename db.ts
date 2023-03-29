@@ -1,11 +1,16 @@
 import { Pool } from 'pg'
+import dotenv from 'dotenv';
+dotenv.config();
+
+
+const isProduction = process.env.NODE_ENV === "production";
+const connectionString = `postgresql://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`;
 
 const pool = new Pool({
-  user: process.env.DB_USER || 'me',
-  host: process.env.DB_HOST || 'localhost',
-  database: process.env.DB_NAME || 'swtkatz',
-  password: process.env.DB_PASSWORD || 'password',
-  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432
+  connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 })
 
 export default pool
