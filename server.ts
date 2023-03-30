@@ -11,7 +11,7 @@ const swaggerDocument = YAML.load('./swagger.yaml')
 
 
 app.use(cors({
-    origin: 'http://localhost:3002'
+    origin: 'https://guarded-depths-92423.herokuapp.com'
 }))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
