@@ -4,7 +4,7 @@ info:
   description: My API description
   version: 1.0.0
 servers:
-  - url: https://guarded-depths-92423.herokuapp.com
+  - url: https://guarded-depths-92423.herokuapp.com/api
 paths:
   /company: 
     get:
