@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import HttpStatus from '../HttpStatus';
-import { retrieveAllCards } from '../models/cardModels';
+import { retrieveAllCards, activateCard } from '../models/cardModels';
 
 export const getCard = async (req: Request, res: Response) => {
     const cardID = parseInt(req.params.cardID)
@@ -19,12 +19,13 @@ export const getCard = async (req: Request, res: Response) => {
     }
 }
 
-export const postActivateCard = (req: Request, res: Response) => {
+export const postActivateCard = async (req: Request, res: Response) => {
     const cardID = parseInt(req.params.cardID)
-    console.log(cardID)
     try {
-        res.send(cardID)
+        const updatedCard = await activateCard(cardID)
+        res.status(HttpStatus.OK).json(updatedCard);
     } catch (error) {
-        console.log(error)
+        console.error(error)
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).send('Internal Server Error')
     }
 }

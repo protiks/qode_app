@@ -17,12 +17,15 @@ export const retrieveAllCards = async (cardID: number) => {
 
 export const activateCard = async (cardID: number) => {
     const query = {
-        text: '',
-        value: [cardID]
+        text: 'UPDATE cards SET active = true WHERE id = $1 RETURNING *',
+        values: [cardID]
     }
     try {
-        const activateCard = await pool.query(query)
-        return activateCard
+        const result = await pool.query(query)
+        if (result.rowCount === 0) {
+            throw new Error('Card not found')
+        }
+        return result.rows[0]
     } catch (error) {
         console.error(error)
         throw new Error('Error activating card on the Database')
